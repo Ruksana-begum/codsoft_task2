@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <!-- <link rel="stylesheet" type="text/css" href="cal.css"> -->
+  <style>
+    body {
+    background-color: #2279e3;
+    font-family: Arial, sans-serif;
+  }
+  
+  .calculator {
+    width: 240px;
+    margin: 50px auto;
+    padding: 10px;
+    background-color: #d31d1d;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(176, 13, 140, 0.3);
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-align: right;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  button:hover {
+    background-color: #14ad30;
+  }
+  
+  button:active {
+    background-color: #13aad4;
+  }
+  .color-button {
+    background-color: #808080;
+    color: #d4d1d6;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  .color-button1 {
+    background-color: #808080;
+    color: #d4d1d6;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  .color-button2 {
+    background-color: #808080;
+    color: #d4d1d6;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  .color-button3 {
+    background-color: #808080;
+    color: #d4d1d6;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  .color-button4 {
+    background-color: #a607ca;
+    color: #d4d1d6;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  </style>
+</head>
+<body>
+    <center><u><font color="pink" size="40">Calculator</font></u></center>
+  <div class="calculator">
+    <input type="text" id="result" readonly>
+    <table>
+      <tr>
+        <td><button onclick="appendNumber('7')">7</button></td>
+        <td><button onclick="appendNumber('8')">8</button></td>
+        <td><button onclick="appendNumber('9')">9</button></td>
+        <td><button class="color-button" onclick="appendOperator('+')">+</button></td>
+      </tr>
+      <tr>
+        <td><button onclick="appendNumber('4')">4</button></td>
+        <td><button onclick="appendNumber('5')">5</button></td>
+        <td><button onclick="appendNumber('6')">6</button></td>
+        <td><button class="color-button1" onclick="appendOperator('-')">-</button></td>
+      </tr>
+      <tr>
+        <td><button onclick="appendNumber('1')">1</button></td>
+        <td><button onclick="appendNumber('2')">2</button></td>
+        <td><button onclick="appendNumber('3')">3</button></td>
+        <td><button  class="color-button2" onclick="appendOperator('*')">*</button></td>
+      </tr>
+      <tr>
+        <td><button onclick="appendNumber('0')">0</button></td>
+        <td><button onclick="appendOperator('.')">.</button></td>
+        <td><button onclick="clearInput()">C</button></td>
+        <td><button class="color-button3" onclick="appendOperator('/')">/</button></td>
+      </tr>
+      <tr>
+        <td colspan="4"><button class="color-button4" onclick="calculate()">=</button></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- <script src="cal.js"></script> -->
+  <script>
+    let input = document.getElementById('result');
+
+function appendNumber(num) {
+  input.value += num;
+}
+
+function appendOperator(operator) {
+  if (input.value === '') {
+    return;
+  }
+  
+  const lastChar = input.value.slice(-1);
+  if (lastChar === '+' || lastChar === '-' || lastChar === '*' || lastChar === '/') {
+    input.value = input.value.slice(0, -1);
+  }
+  
+  input.value += operator;
+}
+
+function clearInput() {
+  input.value = '';
+}
+
+function calculate() {
+  try {
+    const result = eval(input.value);
+    input.value = result;
+  } catch (error) {
+    input.value = 'Error';
+  }
+}
+
+  </script>
+</body>
+</html>
